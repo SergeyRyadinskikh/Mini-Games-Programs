@@ -1,0 +1,211 @@
+<!document.getElementByIdTYPE html>
+<html>
+<head>
+    <title>Rock, scissors, paper game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><strong>Welcome to "Rock Scissors Paper" (scenario 2) game !</strong></h3>
+                </div>
+                <div class="panel-body" id="logo">
+                    <h2 class="scoreB">Score</h2>
+
+                <div class="scoreB" id="score-board">
+                    <span id="user1" class="badge"></span>
+                    <div id="computer" class="badge">comp</div>
+                </div><br/>
+                    <div class="scoreB" style="font-size: 30px;">
+                    <span id="user-score">0</span>:<span id="comp-score">0</span>
+                    </div>
+                    <br/>
+                    <div style="font-size: 20px;">
+                        <span class="scoreB">Computers choose: </span><span class="scoreB" id="comp-choise"></span><br/>
+                    </div>
+                    <br/>
+
+                <div class="intro">
+                    <h2>First who gets to score 5 wins, good luck !</h2><br/>
+                    <h3>Please enter your name bellow:</h3>
+                    <input type="text" value=" " placeholder="Type name here..." id="inpid"><button class="start">Start game</button>
+                </div>
+                <div class="end">
+                    <div class="outro">
+                        <h1 id="win-outro">Congratulations you won !!!</h1><br/><br/>
+                        <h3>Press "F5" to start new game</h3>
+                    </div>
+                    <div class="outro2">
+                        <h1 id="lose-outro">Game over !!!</h1>
+                        <h3>Press "F5" to start new game</h3>
+                    </div>
+                </div>
+
+                <div class="game-body">
+                    <button id="btn-rock">Rock</button>
+                    <button id="btn-scissors">Scissors</button>
+                    <button id="btn-paper">Paper</button>
+                </div>
+
+                    <span id="here"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var randomChoise = ['rock','scissors','paper'];
+    var userScore = 0;
+    var compScore = 0;
+    var i = 5;
+
+    $(".game-body").hide();
+    $(".scoreB").hide();
+    $(".outro").hide();
+    $(".outro2").hide();
+    $(".start").click(function() {
+        $(".intro").fadeOut(1000);
+        $(".scoreB").fadeIn(1000);
+        $(".game-body").fadeIn(1000);
+        document.getElementById("user1").innerHTML = inpid.value;
+    });
+
+    $("#btn-rock").click(function() {
+        var randomGuess = randomChoise[Math.floor(Math.random() * randomChoise.length)];
+
+        if ( i > userScore || i > compScore ) {
+            if (randomChoise[2] === randomGuess || i === compScore) {
+                ++compScore;
+                if ( i === compScore ) {
+                    alert("You lost !!!");
+                    $(".game-body").fadeOut(2000);
+                    $(".scoreB").fadeOut(2000);
+                    $(".outro2").fadeIn(2000);
+                } else {
+                alert("Round lost, rock cant beat paper.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+                }
+            } else if (randomChoise[1] === randomGuess || i === userScore) {
+                ++userScore;
+                if ( i === userScore ) {
+                    alert("You won !!!");
+                    $(".game-body").fadeOut(2000);
+                    $(".scoreB").fadeOut(2000);
+                    $(".outro").fadeIn(2000);
+                } else {
+                alert("Round won, rock beats scissors.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+                }
+            } else {
+                alert("Its a tie, rock cant beat rock.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+            }
+        } else {
+            alert("none");
+        }
+    });
+
+    $("#btn-scissors").click(function() {
+        var randomGuess = randomChoise[Math.floor(Math.random() * randomChoise.length)];
+
+        if ( userScore < i || compScore < i ) {
+            if (randomChoise[0] === randomGuess || i === compScore) {
+                ++compScore;
+                if ( i === compScore ) {
+                    alert("You lost !!!");
+                    $(".game-body").fadeOut(2000);
+                    $(".scoreB").fadeOut(2000);
+                    $(".outro2").fadeIn(2000);
+                } else {
+                alert("Round lost, scissors can`t beat rock.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+                }
+            } else if (randomChoise[2] === randomGuess || i === userScore) {
+                ++userScore;
+                if ( i === userScore ) {
+                    alert("You won !!!");
+                    $(".game-body").fadeOut(2000);
+                    $(".scoreB").fadeOut(2000);
+                    $(".outro").fadeIn(2000);
+                } else {
+                alert("Round won, scissors beats paper.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+                }
+            } else {
+                alert("Its a tie, scissors can`t beat scissors.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+            }
+        } else {
+            alert("none");
+        }
+    });
+
+    $("#btn-paper").click(function() {
+        var randomGuess = randomChoise[Math.floor(Math.random() * randomChoise.length)];
+
+        if ( userScore < i || compScore < i ) {
+            if (randomChoise[1] === randomGuess || i === compScore) {
+                ++compScore;
+                if ( i === compScore ) {
+                    alert("You lost !!!");
+                    $(".game-body").fadeOut(2000);
+                    $(".scoreB").fadeOut(2000);
+                    $(".outro2").fadeIn(2000);
+                } else {
+                alert("Round lost, paper can`t beat scissors.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+                }
+            } else if (randomChoise[0] === randomGuess || i === userScore) {
+                ++userScore;
+                if ( i === userScore ) {
+                    alert("You won !!!");
+                    $(".game-body").fadeOut(2000);
+                    $(".scoreB").fadeOut(2000);
+                    $(".outro").fadeIn(2000);
+                } else {
+                alert("Round won, paper beats rock.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+                }
+            } else {
+                alert("Its a tie, paper can`t beat paper.");
+                document.getElementById("comp-choise").innerHTML = randomGuess;
+                document.getElementById("user-score").innerHTML = userScore;
+                document.getElementById("comp-score").innerHTML = compScore;
+            }
+        } else {
+            alert("none");
+        }
+    });
+</script>
+</body>
+</html>
