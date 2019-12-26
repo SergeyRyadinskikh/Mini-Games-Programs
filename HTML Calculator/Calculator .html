@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        *   {
+            text-align: center;
+            }
+            .buttons-container {
+                display: grid;
+                grid-gap: 10px;
+                grid-template-columns: 60px 60px 60px;
+                justify-content: center;
+                background: light-blue;
+                padding: 10px;
+            }
+            input[type=button] {
+                background: light-grey;
+                border: 1px solid;
+                padding: 5px;
+                font-size: 20px;
+                text-align: center;
+            }
+            input[type=text] {
+                width: 200px;
+                height: 50px;
+                font-size: 30px;
+                margin: 5px;
+                text-align: right;
+            }
+    </style>
+</head>
+<body>
+<div class="container" id="calc">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><strong>Welcome to "Calculator" program !</strong></h3>
+                </div>
+                <div class="panel-body" class="game-body">
+                    <input type="text" name="display" placeholder="0" readonly id="dplay"><br>
+                    <div class="col-md-offset-3 col-md-6">
+                        <div class="buttons-container">
+                            <input type="button" value="7" name="btn7" onClick="pbtn(7)">
+                            <input type="button" value="8" name="btn8" onClick="pbtn(8)">
+                            <input type="button" value="9" name="btn9" onClick="pbtn(9)">
+                            <input type="button" value="4" name="btn4" onClick="pbtn(4)">
+                            <input type="button" value="5" name="btn5" onClick="pbtn(5)">
+                            <input type="button" value="6" name="btn6" onClick="pbtn(6)">
+                            <input type="button" value="1" name="btn1" onClick="pbtn(1)">
+                            <input type="button" value="2" name="btn2" onClick="pbtn(2)">
+                            <input type="button" value="3" name="btn3" onClick="pbtn(3)">
+                            <input type="button" value="0" name="btn0" onClick="pbtn(0)">
+                            <input type="button" value="+" name="btnSum" onClick="pbtnOP('Sum')">
+                            <input type="button" value="-" name="btnSub" onClick="pbtnOP('Sub')">
+                            <input type="button" value="*" name="btnMulti" onClick="pbtnOP('Multi')">
+                            <input type="button" value="/" name="btnDivide" onClick="pbtnOP('Divide')">
+                            <input type="button" value="%" name="percent" onClick="pbtnOP('Percent')">
+                            <input type="button" value="C" name="clear" onClick="pbtnC('clear')">
+                            <input type="button" value="." name="btnDeci" data-action="decimal" onClick="pbtn('.')">
+                            <input type="button" value="=" name="btnEq" onClick="pbtnEq()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var op;
+    var num1;
+
+	function pbtn(value) {
+		var prev = document.getElementById("dplay").value;
+		if (!(prev == "" && value == 0)) {
+			var newval = prev+value;
+			document.getElementById("dplay").value = newval;
+		}
+	}
+
+	function pbtnOP(operator) {
+		op = operator;
+		var display = document.getElementById("dplay").value;
+		num1 = parseInt(display);
+		document.getElementById("dplay").value = "";
+	}
+
+	function pbtnC(clear) {
+	    var display = document.getElementById("dplay").value = " ";
+	    }
+
+	function pbtnEq() {
+		var display = document.getElementById("dplay").value;
+		var num2 = parseInt(display);
+		switch(op){
+			case "Sum":
+				var ans = num1 + num2;
+				break;
+			case "Sub":
+				var ans = num1 - num2;
+				break;
+			case "Multi":
+			    var ans = num1 * num2;
+			    break;
+			case "Divide":
+			    var ans = num1 / num2;
+			    break;
+			case "Percent":
+			    var ans = (num1 * num2)/100;
+			    break;
+		}
+		document.getElementById("dplay").value = ans;
+	}
+</script>
+</body>
+</html>
